@@ -326,6 +326,8 @@ env.Append(LIBPATH=[cpp_bindings_path + 'bin/'])
 env.Append(CPPPATH=['src/'])
 sources = [Glob('src/*.cpp'), 'src/sqlite/sqlite3.c']
 
+env.Append(CPPDEFINES=['SQLITE_ENABLE_FTS5'])
+
 ###############
 #BUILD LIB#####
 ###############
