@@ -13,7 +13,6 @@ func _ready():
 		copy_data_to_user()
 		db_name = "user://data/test"
 
-	# Enable/disable examples here:
 	example_of_fts5_usage()
 
 func cprint(text : String) -> void:
