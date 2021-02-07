@@ -4,7 +4,6 @@ const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 var db
 
 var db_name := "res://data/test"
-
 var table_name := "posts"
 
 signal output_received(text)
@@ -15,7 +14,7 @@ func _ready():
 		db_name = "user://data/test"
 
 	# Enable/disable examples here:
-	example_of_basic_database_querying()
+	example_of_fts5_usage()
 
 func cprint(text : String) -> void:
 	print(text)
@@ -40,19 +39,17 @@ func copy_data_to_user() -> void:
 	else:
 		cprint("An error occurred when trying to access the path.")
 
-# Basic example that goes over all the basic features available in the addon, such
-# as creating and dropping tables, inserting and deleting rows and doing more elementary
-# PRAGMA queries.
-func example_of_basic_database_querying():
+# Basic example that showcases seaching functionalities of FTS5...
+func example_of_fts5_usage():
 
 	db = SQLite.new()
 	db.path = db_name
 	db.verbose_mode = true
 	# Open the database using the db_name found in the path variable
 	db.open_db()
-	#db.drop_table(table_name)
+	db.drop_table(table_name)
 
-	db.query("CREATE VIRTUAL TABLE posts USING FTS5(title, body);")
+	db.query("CREATE VIRTUAL TABLE " + table_name + " USING FTS5(title, body);")
 
 	var row_array := [
 		{"title":'Learn SQlite FTS5', "body":'This tutorial teaches you how to perform full-text search in SQLite using FTS5'},
@@ -61,6 +58,12 @@ func example_of_basic_database_querying():
 	]
 
 	db.insert_rows(table_name, row_array)
+
+	db.query("SELECT * FROM " + table_name + " WHERE posts MATCH 'fts5';")
+	cprint("result: {0}".format([String(db.query_result)]))
+
+	db.query("SELECT * FROM " + table_name + " WHERE posts MATCH 'learn SQLite';")
+	cprint("result: {0}".format([String(db.query_result)]))
 
 	# Close the current database
 	db.close_db()
