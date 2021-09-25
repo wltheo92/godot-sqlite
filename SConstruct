@@ -159,6 +159,12 @@ opts.Add(PathVariable(
     'libgdsqlite', 
     PathVariable.PathAccept
 ))
+# Options pertaining to extended features
+opts.Add(BoolVariable(
+    'enable_fts5', 
+    'Enable virtual tables using FTS5.', 
+    False
+))
 
 # Local dependency paths, adapt them to your setup
 godot_headers_path = "godot-cpp/godot-headers/"
@@ -399,7 +405,8 @@ sources = [Glob('src/*.cpp'), Glob('src/vfs/*.cpp'), 'src/sqlite/sqlite3.c']
 if env['platform'] == "javascript":
     sources.append(cpp_bindings_path + 'bin/' + cpp_bindings_libname + '.a')
 
-env.Append(CPPDEFINES=['SQLITE_ENABLE_FTS5'])
+if env["enable_fts5"]:
+    env.Append(CPPDEFINES=['SQLITE_ENABLE_FTS5'])
 
 ###############
 #BUILD LIB#####

@@ -25,6 +25,8 @@ void SQLite::_register_methods()
     register_method("import_from_json", &SQLite::import_from_json);
     register_method("export_to_json", &SQLite::export_to_json);
 
+    register_method("has_feature", &SQLite::has_feature);
+
     register_property<SQLite, int>("last_insert_rowid", &SQLite::set_last_insert_rowid, &SQLite::get_last_insert_rowid, 0);
 
     register_property<SQLite, bool>("verbose_mode", &SQLite::verbose_mode, false);
@@ -861,6 +863,17 @@ bool SQLite::export_to_json(String export_path)
     ofs.close();
 
     return true;
+}
+
+bool SQLite::has_feature(const String &p_feature)
+{
+#ifdef SQLITE_ENABLE_FTS5
+    if (p_feature == "enable_fts5")
+    {
+        return true;
+    }
+#endif    
+    return false;
 }
 
 void SQLite::set_last_insert_rowid(int p_last_row_id)

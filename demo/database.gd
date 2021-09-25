@@ -43,6 +43,10 @@ func copy_data_to_user() -> void:
 func example_of_fts5_usage():
 
 	db = SQLite.new()
+	if not db.has_feature("enable_fts5"):
+		cprint("No support for FTS5 available in libraries (re-build libraries with argument `enable_fts5=true`)")
+		return
+
 	db.path = db_name
 	db.verbose_mode = true
 	# Open the database using the db_name found in the path variable

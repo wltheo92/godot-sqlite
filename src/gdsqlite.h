@@ -87,6 +87,8 @@ namespace godot
         bool import_from_json(String import_path);
         bool export_to_json(String export_path);
 
+        bool has_feature(const String &p_feature);
+
         void set_last_insert_rowid(int p_last_row_id);
         int get_last_insert_rowid();
     };
