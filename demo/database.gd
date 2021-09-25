@@ -9,10 +9,11 @@ var table_name := "posts"
 signal output_received(text)
 
 func _ready():
-	if OS.get_name() == "Android" or OS.get_name() == "iOS":
+	if OS.get_name() in ["Android", "iOS", "HTML5"]:
 		copy_data_to_user()
 		db_name = "user://data/test"
 
+	# Enable/disable examples here:
 	example_of_fts5_usage()
 
 func cprint(text : String) -> void:

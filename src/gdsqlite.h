@@ -5,6 +5,7 @@
 #include <Reference.hpp>
 #include <FuncRef.hpp>
 #include <ProjectSettings.hpp>
+#include <Marshalls.hpp>
 #include <Directory.hpp>
 #include <JSON.hpp>
 #include <JSONParseResult.hpp>
@@ -13,8 +14,8 @@
 #include <vector>
 #include <sstream>
 #include <sqlite/sqlite3.h>
-#include <base64/base64.h>
 #include <helpers/current_function.h>
+#include <vfs/gdsqlite_vfs.h>
 
 namespace godot
 {
@@ -55,8 +56,8 @@ namespace godot
 
     public:
         int last_insert_rowid;
-        bool verbose_mode, foreign_keys;
-        String path, error_message;
+        bool verbose_mode, foreign_keys, read_only;
+        String path, error_message, default_extension;
         Array query_result;
 
         static void _register_methods();
