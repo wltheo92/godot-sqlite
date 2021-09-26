@@ -12,8 +12,8 @@ env:
 
 jobs:
   linux-compilation:
-    name: Ubuntu 20.04 Compilation
-    runs-on: "ubuntu-20.04"
+    name: Ubuntu Compilation
+    runs-on: "ubuntu-latest"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -47,6 +47,7 @@ jobs:
 
       - name: Compilation
         run: |
+          ldd --version
           mkdir -v -p ${{env.PROJECT_FOLDER}}/${{env.TARGET_PATH}}
           cd ${{env.PROJECT_FOLDER}}
           cd godot-cpp
@@ -59,9 +60,10 @@ jobs:
         with:
           name: x11
           path: ${{env.PROJECT_FOLDER}}/${{env.TARGET_PATH}}
+
   linux-legacy-compilation:
-    name: Ubuntu 16.04 Compilation
-    runs-on: "ubuntu-16.04"
+    name: Ubuntu 18.04 Compilation
+    runs-on: "ubuntu-18.04"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -96,6 +98,7 @@ jobs:
       # Linux shared libraries are humongous (>70MB) for some reason.. don't forget to strip them!
       - name: Compilation
         run: |
+          ldd --version
           mkdir -v -p ${{env.PROJECT_FOLDER}}/${{env.TARGET_PATH}}
           cd ${{env.PROJECT_FOLDER}}
           cd godot-cpp
