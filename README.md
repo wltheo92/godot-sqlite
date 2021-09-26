@@ -296,7 +296,12 @@ Follow these steps to create a working Linux Server for your project:
 (for example if your package is called `game.pck`, your binary should be named `game.x64`)
 4. Done!
 
-***NOTE**: If you are using an older version of Linux on your server machine (with glibc version < 2.28), the plugin crashes due to the compiled version of glibc being too recent. In that case you can either recompile the Linux plugin binary yourself or you can download the legacy binaries (Ubuntu 16.04 with glibc version == 2.23) as found [here](https://github.com/2shady4u/godot-sqlite/actions/workflows/linux_builds.yml).* 
+***NOTE**: If you are using an older version of Linux on your server machine (with glibc version < 2.31), the plugin crashes due to the compiled version of glibc being too recent. In that case you can either recompile the Linux plugin binary yourself or you can download the legacy binaries (Ubuntu 18.04 with glibc version == 2.27) as found [here](https://github.com/2shady4u/godot-sqlite/actions/workflows/linux_builds.yml).*  
+
+*Following command can be used to check your glibc version:*
+```
+ldd -version
+```
 
 # How to export?
 
