@@ -875,7 +875,7 @@ bool SQLite::export_to_json(String export_path)
     return true;
 }
 
-bool SQLite::has_feature(const String &p_feature)
+bool SQLite::has_feature(String p_feature)
 {
 #ifdef SQLITE_ENABLE_FTS5
     if (p_feature == "enable_fts5")
