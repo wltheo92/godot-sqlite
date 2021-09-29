@@ -53,6 +53,7 @@ namespace godot
         Dictionary deep_copy(Dictionary p_dict);
         Variant get_with_default(Dictionary p_dict, String p_key, Variant p_default);
         bool validate_json(Array import_json, std::vector<object_struct> &tables_to_import);
+        void remove_shadow_tables(Array &p_array);
 
     public:
         int last_insert_rowid;
