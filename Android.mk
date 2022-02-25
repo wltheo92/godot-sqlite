@@ -16,6 +16,7 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libgdsqlite
+LOCAL_CFLAGS := $(EXTERNAL_CFLAGS)
 LOCAL_CPPFLAGS := -std=c++14
 LOCAL_CPP_FEATURES := rtti exceptions
 LOCAL_LDLIBS := -llog

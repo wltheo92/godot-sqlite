@@ -10,6 +10,7 @@ env:
   TARGET_PATH: demo/addons/godot-sqlite/bin/android/
   TARGET_NAME: libgdsqlite
   TARGET: release
+  EXTERNAL_CFLAGS: -DSQLITE_ENABLE_FTS5
 
 jobs:
   android-compilation:
@@ -56,7 +57,7 @@ jobs:
           scons platform=android bits=64 android_arch=arm64v8 target=${{env.TARGET}} generate_bindings=yes -j4
           scons platform=android bits=64 android_arch=x86 target=${{env.TARGET}} generate_bindings=yes -j4
           cd ..
-          $ANDROID_NDK_ROOT/ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk APP_PLATFORM=android-21 NDK_LIBS_OUT=./${{env.TARGET_PATH}}
+          $ANDROID_NDK_ROOT/ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk APP_PLATFORM=android-21 NDK_LIBS_OUT=./${{env.TARGET_PATH}} EXTERNAL_CFLAGS=${{env.EXTERNAL_CFLAGS}} V=1
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
