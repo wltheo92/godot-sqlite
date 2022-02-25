@@ -13,8 +13,6 @@ does not require any additional compilation or mucking about with build scripts.
 - iOS (arm64 & armv7)
 - HTML5 (**requires Godot 3.3+**)
 
-_DISLAIMER_: iOS is still untested! (as of 24/12/2020)
-
 # How to install?
 
 Re-building Godot from scratch is **NOT** required, the proper way of installing this plugin is to either install it through the Asset Library or to just manually download the build files yourself.
@@ -302,6 +300,10 @@ Follow these steps to create a working Linux Server for your project:
 ```
 ldd -version
 ```
+
+### 6. How to export to iOS using Xcode?
+
+Apple disallows the usage of dynamic libraries in any and all user applications. As such, the compiled binaries for iOS are static libraries (`*.a`) and **both** the static godot-sqlite libraries (`libgdsqlite.a`) as the godot-cpp static libraries <nobr>(`libgodot-cpp.ios.release.<ios_arch>.a`</nobr>) need to be properly included in your Xcode-project.
 
 # How to export?
 

@@ -12,8 +12,8 @@ env:
 
 jobs:
   linux-compilation:
-    name: Ubuntu Compilation
-    runs-on: "ubuntu-latest"
+    name: Ubuntu 20.04 Compilation
+    runs-on: "ubuntu-20.04"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
