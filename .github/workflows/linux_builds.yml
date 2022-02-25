@@ -9,6 +9,7 @@ env:
   TARGET_PATH: demo/addons/godot-sqlite/bin/x11/
   TARGET_NAME: libgdsqlite
   TARGET: release
+  EXTENDED_FEATURES: enable_fts5=true
 
 jobs:
   linux-compilation:
@@ -53,7 +54,7 @@ jobs:
           cd godot-cpp
           scons platform=linux bits=64 target=${{env.TARGET}} generate_bindings=yes -j4
           cd ..
-          scons platform=linux target=${{env.TARGET}} target_path=${{env.TARGET_PATH}} target_name=${{env.TARGET_NAME}}
+          scons platform=linux target=${{env.TARGET}} target_path=${{env.TARGET_PATH}} target_name=${{env.TARGET_NAME}} ${{env.EXTENDED_FEATURES}}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
@@ -95,7 +96,6 @@ jobs:
           python --version
           scons --version
 
-      # Linux shared libraries are humongous (>70MB) for some reason.. don't forget to strip them!
       - name: Compilation
         run: |
           ldd --version
@@ -104,7 +104,7 @@ jobs:
           cd godot-cpp
           scons platform=linux bits=64 target=${{env.TARGET}} generate_bindings=yes -j4
           cd ..
-          scons platform=linux target=${{env.TARGET}} target_path=${{env.TARGET_PATH}} target_name=${{env.TARGET_NAME}}
+          scons platform=linux target=${{env.TARGET}} target_path=${{env.TARGET_PATH}} target_name=${{env.TARGET_NAME}} ${{env.EXTENDED_FEATURES}}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
