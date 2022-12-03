@@ -18,15 +18,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: ['Windows (x86_64, MSVC)', 'Windows (x86_64, MinGW)']
+        name: ['Windows (x86_64, MinGW)']
         target: [template_debug, template_release]
         include:
-          - name: Windows (x86_64, MSVC)
-            os: "windows-latest"
-            platform: windows
-            artifact-extension: dll
-            additional-python-packages: pywin32
-
           - name: Windows (x86_64, MinGW)
             os: "windows-latest"
             platform: windows
