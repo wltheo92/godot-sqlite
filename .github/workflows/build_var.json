@@ -5,10 +5,11 @@
     ],
     "jobs": [
         {
-            "name": "Javascript Compilation",
+            "name": "Web (wasm32)",
             "os": "ubuntu-20.04",
             "platform": "javascript",
-            "artifact-extension": "wasm"
+            "artifact-extension": "wasm",
+            "cache-name": "web-wasm32"
         }
     ]
 }
