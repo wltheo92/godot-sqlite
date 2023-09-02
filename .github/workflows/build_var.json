@@ -5,27 +5,12 @@
     ],
     "jobs": [
         {
-            "name": "Windows (x86_64, MSVC)",
-            "os": "windows-latest",
-            "platform": "windows",
-            "artifact-extension": "dll",
-            "additional-python-packages": "pywin32",
-            "cache-name": "win-x86_64"
-        },
-        {
-            "name": "Ubuntu (GCC)",
+            "name": "Android (x86_32)",
             "os": "ubuntu-20.04",
-            "platform": "linux",
+            "platform": "android",
             "artifact-extension": "so",
-            "cache-name": "linux-x86_64"
-        },
-        {
-            "name": "MacOS (universal)",
-            "os": "macos-11",
-            "platform": "macos",
-            "artifact-extension": "framework",
-            "flags": "arch=universal",
-            "cache-name": "macos-universal"
+            "flags": "ANDROID_NDK_ROOT=$ANDROID_NDK_LATEST_HOME arch=x86_32",
+            "cache-name": "android-x86_32"
         },
         {
             "name": "Android (x86_64)",
@@ -36,20 +21,20 @@
             "cache-name": "android-x86_64"
         },
         {
+            "name": "Android (arm32)",
+            "os": "ubuntu-20.04",
+            "platform": "android",
+            "artifact-extension": "so",
+            "flags": "ANDROID_NDK_ROOT=$ANDROID_NDK_LATEST_HOME arch=arm32",
+            "cache-name": "android-arm32"
+        },
+        {
             "name": "Android (arm64)",
             "os": "ubuntu-20.04",
             "platform": "android",
             "artifact-extension": "so",
             "flags": "ANDROID_NDK_ROOT=$ANDROID_NDK_LATEST_HOME arch=arm64",
             "cache-name": "android-arm64"
-        },
-        {
-            "name": "iOS (arm64)",
-            "os": "macos-11",
-            "platform": "ios",
-            "artifact-extension": "dylib",
-            "flags": "arch=arm64",
-            "cache-name": "ios-arm64"
         }
     ]
 }
